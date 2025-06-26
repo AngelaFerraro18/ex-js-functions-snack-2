@@ -104,3 +104,24 @@ setTimeout(() => {
     clearInterval(interruzione);
     console.log('Contatore interrotto!')
 }, 20000)
+
+/*
+Crea una funzione che ferma un timer dopo un certo tempo.
+Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
+*/
+
+function eseguiEferma(message) {
+    const eccomiInterval = setInterval(() => {
+        console.log(message)
+    }, 1000);
+
+    return function () {
+        setTimeout(() => {
+            clearInterval(eccomiInterval);
+            console.log('Me ne vado')
+        }, 6000)
+    }
+}
+
+const esegui = eseguiEferma('Eccomi');
+esegui();
