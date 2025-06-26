@@ -62,3 +62,20 @@ Definisci una funzione che accetta un messaggio e lo stampa ogni secondo.
 
 Nota: Questa funzione creerà un loop infinito. Interrompilo manualmente o usa clearInterval() in un altro script.
 */
+
+function stampaOgniSecondo(message) {
+    return function () {
+        const timer = setInterval(() => {
+            console.log(message);
+        }, 1000);
+        return timer;
+    }
+}
+
+const messaggio = stampaOgniSecondo('Ciao');
+const intervallo = messaggio();
+
+setTimeout(() => {
+    clearInterval(intervallo);
+    console.log('Tempo interrotto!');
+}, 5000);
