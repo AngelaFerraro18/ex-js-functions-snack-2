@@ -63,68 +63,68 @@ Definisci una funzione che accetta un messaggio e lo stampa ogni secondo.
 Nota: Questa funzione creerà un loop infinito. Interrompilo manualmente o usa clearInterval() in un altro script.
 */
 
-// function stampaOgniSecondo(message) {
-//     return function () {
-//         const timer = setInterval(() => {
-//             console.log(message);
-//         }, 1000);
-//         return timer;
-//     }
-// }
+function stampaOgniSecondo(message) {
+    return function () {
+        const timer = setInterval(() => {
+            console.log(message);
+        }, 1000);
+        return timer;
+    }
+}
 
-// const messaggio = stampaOgniSecondo('Ciao');
-// const intervallo = messaggio();
+const messaggio = stampaOgniSecondo('Ciao');
+const intervallo = messaggio();
 
-// setTimeout(() => {
-//     clearInterval(intervallo);
-//     console.log('Tempo interrotto!');
-// }, 5000);
+setTimeout(() => {
+    clearInterval(intervallo);
+    console.log('Tempo interrotto!');
+}, 5000);
 
 /* Crea un contatore automatico con setInterval.
 Definisci una funzione creaContatoreAutomatico che accetta un intervallo di tempo e restituisce una funzione che avvia un setInterval, incrementando un contatore e stampandolo.
 */
 
-// function creaContatoreAutomatico(tempo) {
-//     return function () {
+function creaContatoreAutomatico(tempo) {
+    return function () {
 
-//         let count = 0;
+        let count = 0;
 
-//         const intervalloContatore = setInterval(() => {
-//             count++;
-//             console.log(count);
-//         }, tempo);
-//         return intervalloContatore;
-//     }
-// }
+        const intervalloContatore = setInterval(() => {
+            count++;
+            console.log(count);
+        }, tempo);
+        return intervalloContatore;
+    }
+}
 
-// const tempoAutomatico = creaContatoreAutomatico(1000);
-// const interruzione = tempoAutomatico();
+const tempoAutomatico = creaContatoreAutomatico(1000);
+const interruzione = tempoAutomatico();
 
-// setTimeout(() => {
-//     clearInterval(interruzione);
-//     console.log('Contatore interrotto!')
-// }, 20000)
+setTimeout(() => {
+    clearInterval(interruzione);
+    console.log('Contatore interrotto!')
+}, 20000)
 
 /*
 Crea una funzione che ferma un timer dopo un certo tempo.
 Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
 */
 
-// function eseguiEferma(message) {
-//     const eccomiInterval = setInterval(() => {
-//         console.log(message)
-//     }, 1000);
+function eseguiEferma(message) {
+    const eccomiInterval = setInterval(() => {
+        console.log(message)
+    }, 1000);
 
-//     return function () {
-//         setTimeout(() => {
-//             clearInterval(eccomiInterval);
-//             console.log('Me ne vado')
-//         }, 6000)
-//     }
-// }
+    return function () {
+        setTimeout(() => {
+            clearInterval(eccomiInterval);
+            console.log('Me ne vado')
+        }, 6000)
+    }
+}
 
-// const esegui = eseguiEferma('Eccomi');
-// esegui();
+const esegui = eseguiEferma('Eccomi');
+esegui();
 
 /*Crea una funzione che simula un conto alla rovescia
 Scrivi una funzione contoAllaRovescia che accetta un numero n e stampa il conto alla rovescia da n a 0, con un intervallo di 1 secondo tra ogni numero. Quando arriva a 0, stampa "Tempo scaduto!" e interrompe il timer. */
@@ -146,3 +146,35 @@ function contoAllaRovescia(num) {
 }
 
 contoAllaRovescia(10);
+
+
+/*Creare una funzione che esegue una sequenza di operazioni con ritardi
+Scrivi una funzione sequenzaOperazioni che accetta un array di operazioni (funzioni) e un tempo di intervallo.
+
+Ogni operazione deve essere eseguita in sequenza con un ritardo uguale al tempo di intervallo. */
+
+function sequenzaOperazioni(operazioni, intervallo) {
+    operazioni.forEach((operazione, index) => {
+        setTimeout(() => {
+            operazione();
+        }, intervallo * index)
+    })
+}
+
+function sommiamo(num1, num2) {
+    return num1 + num2
+};
+
+function moltiplico(num1, num2) {
+    return num1 * num2;
+}
+
+function raddoppio(num1) {
+    return num1 * 2;
+}
+
+sequenzaOperazioni([
+    () => console.log(`Operazione 1: ${sommiamo(1, 6)}`),
+    () => console.log(`Operazione 2: ${moltiplico(2, 7)}`),
+    () => console.log(`Operazione 3: ${raddoppio(10)}`)
+], 2000);
