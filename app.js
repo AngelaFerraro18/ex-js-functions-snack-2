@@ -79,3 +79,28 @@ setTimeout(() => {
     clearInterval(intervallo);
     console.log('Tempo interrotto!');
 }, 5000);
+
+/* Crea un contatore automatico con setInterval.
+Definisci una funzione creaContatoreAutomatico che accetta un intervallo di tempo e restituisce una funzione che avvia un setInterval, incrementando un contatore e stampandolo.
+*/
+
+function creaContatoreAutomatico(tempo) {
+    return function () {
+
+        let count = 0;
+
+        const intervalloContatore = setInterval(() => {
+            count++;
+            console.log(count);
+        }, tempo);
+        return intervalloContatore;
+    }
+}
+
+const tempoAutomatico = creaContatoreAutomatico(1000);
+const interruzione = tempoAutomatico();
+
+setTimeout(() => {
+    clearInterval(interruzione);
+    console.log('Contatore interrotto!')
+}, 20000)
