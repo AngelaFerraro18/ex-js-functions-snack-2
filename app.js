@@ -39,3 +39,26 @@ const divisione = (num1, num2) => num1 / num2;
 
 console.log(eseguiOperazione(40, 8, sottrazione));
 console.log(`Il risultato della divisione è: ${eseguiOperazione(64, 8, divisione)}`);
+
+
+/* Crea un generatore di funzioni creaTimer.
+Scrivi una funzione creaTimer che accetta un tempo (in ms) e restituisce una nuova funzione che avvia un setTimeout per stampare "Tempo scaduto!".
+*/
+
+function creaTimer(tempo) {
+    return function () {
+        setTimeout(() => {
+            console.log("Tempo scaduto!")
+        }, tempo);
+    };
+};
+
+const timer = creaTimer(1000);
+timer();
+
+
+/*Crea una funzione stampaOgniSecondo con setInterval.
+Definisci una funzione che accetta un messaggio e lo stampa ogni secondo.
+
+Nota: Questa funzione creerà un loop infinito. Interrompilo manualmente o usa clearInterval() in un altro script.
+*/
