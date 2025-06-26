@@ -85,9 +85,10 @@ Definisci una funzione creaContatoreAutomatico che accetta un intervallo di temp
 */
 
 function creaContatoreAutomatico(tempo) {
-    return function () {
 
-        let count = 0;
+    let count = 0;
+
+    return function () {
 
         const intervalloContatore = setInterval(() => {
             count++;
@@ -110,21 +111,38 @@ Crea una funzione che ferma un timer dopo un certo tempo.
 Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
 */
 
-function eseguiEferma(message) {
+// function eseguiEferma(message) {
+//     const eccomiInterval = setInterval(() => {
+//         console.log(message)
+//     }, 1000);
+
+//     return function () {
+//         setTimeout(() => {
+//             clearInterval(eccomiInterval);
+//             console.log('Me ne vado')
+//         }, 6000)
+//     }
+// }
+
+// const esegui = eseguiEferma('Eccomi');
+// esegui();
+
+function eseguiEferma(message, intervallo, durata) {
     const eccomiInterval = setInterval(() => {
         console.log(message)
-    }, 1000);
+    }, intervallo);
 
-    return function () {
-        setTimeout(() => {
-            clearInterval(eccomiInterval);
-            console.log('Me ne vado')
-        }, 6000)
-    }
+
+    setTimeout(() => {
+        clearInterval(eccomiInterval);
+        console.log('Me ne vado')
+    }, durata)
+
 }
 
-const esegui = eseguiEferma('Eccomi');
-esegui();
+eseguiEferma('Eccomi', 1000, 5000);
+
+
 
 /*Crea una funzione che simula un conto alla rovescia
 Scrivi una funzione contoAllaRovescia che accetta un numero n e stampa il conto alla rovescia da n a 0, con un intervallo di 1 secondo tra ogni numero. Quando arriva a 0, stampa "Tempo scaduto!" e interrompe il timer. */
