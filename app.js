@@ -178,3 +178,30 @@ sequenzaOperazioni([
     () => console.log(`Operazione 2: ${moltiplico(2, 7)}`),
     () => console.log(`Operazione 3: ${raddoppio(10)}`)
 ], 2000);
+
+
+/*Creare un throttler per limitare l’esecuzione di una funzione
+Scrivi una funzione creaThrottler che accetta una funzione e un tempo `limite`.
+
+Restituisce una nuova funzione che, quando chiamata ripetutamente, esegue l'operazione originale al massimo una volta ogni n millisecondi. */
+
+function creaThrottler(funzione, tempoLimite) {
+
+    let ultimaEs = 0;
+
+    return function (...args) {
+
+        const ora = Date.now();
+
+        if (ora - ultimaEs >= tempoLimite) {
+            ultimaEs = ora;
+            funzione(...args);
+        } else {
+            console.log('Non posso eseguire');
+        }
+    }
+}
+
+const throttler = creaThrottler(() => console.log('Eseguito!'), 2000);
+throttler();
+
